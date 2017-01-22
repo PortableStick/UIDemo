@@ -15,34 +15,6 @@ class MainForceGraph extends Component {
         .force("x", d3.forceX(0))
     }
 
-    forceGraph(data) {
-      this.link
-            .data(data.links)
-            .enter()
-            .append("line")
-            .attr('stroke', 'black')
-            .classed("link", true)
-
-      this.node
-            .data(data.nodes)
-            .enter()
-            .append('circle')
-            .classed('person', true)
-            .attr('fill', 'blue')
-            .attr('r', '10')
-
-      this.simulation.nodes(data.nodes).on('tick', () => {
-        this.node.attr('cx', d => d.x + 'px')
-          .attr('cy', d => (d.y - 5) + 'px')
-        this.link.attr('x1', d => d.source.x)
-          .attr('y1', d => d.source.y)
-          .attr('x2', d => d.target.x)
-          .attr('y2', d => d.target.y)
-      });
-
-      this.simulation.force("links").links(data.links)
-    }
-
     componentDidMount() {
       let { nodes, links } = this.props
       let self = d3.select('#main-graph')
