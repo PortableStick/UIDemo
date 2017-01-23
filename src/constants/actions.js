@@ -1,2 +1,6 @@
 export const GET_STATE = "GET_STATE"
 export const RECEIVE_STATE = "RECEIVE_STATE"
+export const SET_WINDOW_SIZE = "SET_WINDOW_SIZE"
+export const SET_TOOLTIP_DATA = "SET_TOOLTIP_DATA"
+export const SHOW_TOOLTIP = "SHOW_TOOLTIP"
+export const HIDE_TOOLTIP = "HIDE_TOOLTIP"

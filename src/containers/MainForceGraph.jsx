@@ -1,19 +1,33 @@
 import React, {Component} from 'react';
-import * as d3 from 'd3'
+import { forceSimulation,
+        forceLink,
+        forceCollide,
+        forceManyBody,
+        forceCenter,
+        forceY,
+        forceX,
+        select } from 'd3'
+import { showTooltip, hideTooltip, setToolttipData } from '../actions/actions'
 import store from '../store/store'
+import Tooltip from '../components/Tooltip.jsx'
 import { connect } from 'react-redux'
 import '../scss/main-force-graph.scss'
 
 class MainForceGraph extends Component {
     constructor(props) {
       super(props)
-      this.simulation = d3.forceSimulation().force('links', d3.forceLink().id(d => d.id))
-        .force('collide', d3.forceCollide().iterations(16))
-        .force('charge', d3.forceManyBody().strength(-250))
-        .force('center', d3.forceCenter(props.width / 2, props.height / 2))
-        .force('y', d3.forceY(0))
-        .force('x', d3.forceX(0))
+      this.simulation = forceSimulation().force('links', forceLink().id(d => d.id))
+        .force('collide', forceCollide().iterations(16))
+        .force('charge', forceManyBody().strength(-250))
+        .force('center', forceCenter(props.width / 2, window.innerHeight / 2))
+        .force('y', forceY(0))
+        .force('x', forceX(0))
         .on('tick', this.onTick.bind(this))
+      // this.tooltip = select('body')
+      //                 .append('div')
+      //                 .classed('tooltip', true)
+      //                 .style('opacity', '0')
+      //                 .style('position', 'absolute')
     }
 
     onTick() {
@@ -29,7 +43,7 @@ class MainForceGraph extends Component {
 
     componentDidMount() {
       let { nodes, links } = this.props
-      let self = d3.select('#main-graph')
+      let self = select('#main-graph')
       this.node = self.append('g')
         .classed('people', true)
         .selectAll('.person')
@@ -39,6 +53,8 @@ class MainForceGraph extends Component {
         .classed('person', true)
         .attr('fill', 'blue')
         .attr('r', '10')
+        .on('mouseover', this.displayCurrentObj.bind(this))
+        .on('mouseout', this.hideCurrentObj.bind(this))
       this.link = self.append('g')
         .classed('links', true)
         .selectAll('.link')
@@ -62,6 +78,8 @@ class MainForceGraph extends Component {
         .classed('person', true)
         .attr('fill', 'blue')
         .attr('r', '10')
+        .on('mouseover', this.displayCurrentObj.bind(this))
+        .on('mouseout', this.hideCurrentObj.bind(this))
         .merge(this.node)
 
       this.link = this.link.data(links)
@@ -73,18 +91,37 @@ class MainForceGraph extends Component {
         .merge(this.link)
 
       this.simulation.nodes(nodes)
-      this.simulation.force('links').links(links)
+      this.simulation.force('links')
+        .links(links)
+      this.simulation
+        .force('center', forceCenter(this.props.width / 2, window.innerHeight / 2))
       this.simulation.alpha(1).restart()
+    }
+
+    displayCurrentObj(data) {
+     store.dispatch(setToolttipData(data))
+     store.dispatch(showTooltip())
+      // this.tooltip
+      //     .style('opacity', '1')
+      //     .style('top', () => `${+data.y - 50}px`)
+      //     .style('left', () => `${+data.x + 25}px`)
+      //     .html(`<div>${data.id}</div>`)
+    }
+
+    hideCurrentObj() {
+      store.dispatch(hideTooltip())
+      // this.tooltip
+      //     .style('opacity', '0')
     }
 
     render() {
       return(
-        <svg id="main-graph" width={this.props.width} height={this.props.height}>
+        <svg id="main-graph" width={this.props.width} height={window.innerHeight}>
         </svg>
       )
     }
 }
 
-const mapStateToProps = state => ({ nodes: state.nodes, links: state.links })
+const mapStateToProps = state => ({ nodes: state.nodes, links: state.links, width: state.windowSize })
 
 export default connect(mapStateToProps)(MainForceGraph);

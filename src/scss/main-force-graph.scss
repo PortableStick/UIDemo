@@ -1,0 +1,13 @@
+.tooltip {
+  background-color: steelblue;
+  border: 2px solid black;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px;
+  opacity: 1;
+  position: absolute;
+}
+
+.hidden {
+  opacity: 0;
+}
