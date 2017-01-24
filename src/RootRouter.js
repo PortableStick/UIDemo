@@ -8,6 +8,6 @@ export default props =>
 <Router history={browserHistory}>
   <Route path="/" component={App}>
     <IndexRoute component={MainForceGraph} />
-    <Route path="component" component={EmptyComponent} />
+    <Route path="component/:index" component={EmptyComponent} />
   </Route>
 </Router>
