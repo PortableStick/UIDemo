@@ -18,14 +18,12 @@ import '../scss/main-force-graph.scss'
 class MainForceGraph extends Component {
     constructor(props) {
       super(props)
-      this.simulation = forceSimulation().force('links', forceLink().id(d => d.id))
-        .force('charge', forceManyBody().strength(-250))
+      this.simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(400))
         .force('center', forceCenter(props.width / 2, window.innerHeight / 2))
-        .force('y', forceY(0))
-        .force('x', forceX(0))
     }
 
     buildSimulation() {
+      this.simulation.alpha(1)
       for(let i = 0, n = Math.ceil(Math.log(this.simulation.alphaMin()) / Math.log(1 - this.simulation.alphaDecay())); i < n; ++i) {
         this.simulation.tick()
       }
@@ -48,7 +46,7 @@ class MainForceGraph extends Component {
     componentDidMount() {
       let { nodes, links } = this.props
       let self = select('#main-graph')
-      this.simulation.nodes(nodes);
+      this.simulation.nodes(nodes)
       this.simulation.force('links').links(links)
       this.buildSimulation()
       this.node = self.append('g')
@@ -65,6 +63,7 @@ class MainForceGraph extends Component {
         .on('mouseover', this.displayCurrentObj.bind(this))
         .on('mouseout', this.hideCurrentObj.bind(this))
         .on('click', this.goToComponent.bind(this))
+
       this.link = self.append('g')
         .classed('links', true)
         .selectAll('.link')
@@ -114,10 +113,6 @@ class MainForceGraph extends Component {
         .attr('y2', d => d.target.y)
         .classed('link', true)
         .merge(this.link)
-
-      this.simulation.nodes(nodes)
-      this.simulation.force('links')
-        .links(links)
     }
 
     render() {
