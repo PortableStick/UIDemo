@@ -2,7 +2,6 @@ const port = process.env.PORT || 9000
 const http = require('http'),
       websocket = require('ws'),
       fs = require('fs')
-      lesMisData = fs
 
 const server = http.createServer((request, response) => {
 
