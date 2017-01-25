@@ -18,7 +18,8 @@ import '../scss/main-force-graph.scss'
 class MainForceGraph extends Component {
     constructor(props) {
       super(props)
-      this.simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(400))
+      this.simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(20))
+        .force('charge', forceManyBody().strength(-80))
         .force('center', forceCenter(props.width / 2, window.innerHeight / 2))
     }
 
@@ -79,10 +80,10 @@ class MainForceGraph extends Component {
     }
 
     componentDidUpdate() {
-      let { nodes, links } = this.props
+      let { nodes, links, width } = this.props
 
-      this.simulation
-        .force('center', forceCenter(this.props.width / 2, window.innerHeight / 2))
+      this.simulation = this.simulation
+        .force('center', forceCenter(width / 2, window.innerHeight / 2))
       this.simulation.nodes(nodes)
       this.simulation.force('links')
         .links(links)

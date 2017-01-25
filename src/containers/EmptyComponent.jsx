@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import store from '../store/store'
 import { connect } from 'react-redux'
+import ComponentSwitch from '../switches/ComponentSwitch.jsx'
 
 class EmptyComponent extends Component {
   constructor(props) {
@@ -8,9 +9,14 @@ class EmptyComponent extends Component {
   }
 
   render() {
-    return(<div>
-      <h1>Component name: {this.props[this.props.params.index].id}</h1>
-    </div>)
+    const currentItem = this.props[this.props.params.index]
+    const { id } = currentItem
+    return(
+    <div>
+      <h1>Component name: { id }</h1>
+      <ComponentSwitch currentItem={currentItem} />
+    </div>
+    )
   }
 }
 
