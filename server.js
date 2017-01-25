@@ -10,7 +10,7 @@ const server = http.createServer((request, response) => {
 const wsserver = new websocket.Server({ server })
 
 wsserver.on('connection', connection => {
-  fs.readFile('./les_mis.json', 'UTF-8', (err, data) => {
+  fs.readFile('./mockComponents.json', 'UTF-8', (err, data) => {
     wsserver.clients.forEach(client => {
       client.send(data)
     })

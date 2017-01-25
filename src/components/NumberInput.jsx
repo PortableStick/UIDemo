@@ -2,7 +2,7 @@ import React from 'react'
 
 export default props =>
 <fieldset key={props.id}>
-  <label for={`${props.id}-numberInput`}>
+  <label  htmlFor={`${props.id}-numberInput`}>
     Number label:
   </label>
   <input type="number"

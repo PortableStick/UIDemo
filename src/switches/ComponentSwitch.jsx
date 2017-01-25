@@ -5,24 +5,24 @@ import NumberInput from '../components/NumberInput.jsx'
 import RadioInput from '../components/RadioInput.jsx'
 import SelectInput from '../components/SelectInput.jsx'
 import TextInput from '../components/TextInput.jsx'
-// List out needed proptypes and fill out with mock data
+
 export default props => {
-  const components = props.componentList.map((component, index) => {
+  const components = props.currentItem.componentList.map((component, index) => {
     switch(component.type) {
       case "BUTTON":
-        return(<Button/>)
+        return(<Button key={`${component.id}-${index}`} onClick={props.onButtonClick} {...component}/>)
       case "DISCRETE_SLIDER":
-        return(<DiscreteSlider/>)
+        return(<DiscreteSlider key={`${component.id}-${index}`} onChange={props.onSliderMove} {...component} />)
       case "NUMBER_INPUT":
-        return(<NumberInput/>)
+        return(<NumberInput key={`${component.id}-${index}`} onChange={props.onNumberChange} {...component} />)
       case "RADIO_INPUT":
-        return(<RadioInput/>)
+        return(<RadioInput key={`${component.id}-${index}`}  onChange={props.onRadioButton} {...component} />)
       case "SELECT_INPUT":
-        return(<SelectInput/>)
+        return(<SelectInput key={`${component.id}-${index}`} onChange={props.onSelectOption} {...component} />)
       case "TEXT_INPUT":
-        return(<TextInput/>)
+        return(<TextInput key={`${component.id}-${index}`} onChange={props.onTextInput} {...component} />)
       default:
-        return(<div>{`Component type ${component.type} not recognized`}</div>)
+        return(<div key={`missing-${index}`}>{`Component type ${component.type || 'null'} not recognized`}</div>)
     }
   })
   return(

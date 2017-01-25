@@ -3,8 +3,8 @@ import RadioOption from './RadioOption.jsx'
 
 export default props =>
 <fieldset key={props.id}>
-  <label for={`${props.id}-radioInput`}>
+  <label  htmlFor={`${props.id}-radioInput`}>
     Radio label:
   </label>
-  {props.radioValues.map((value, idx) => <RadioOption {...props} value={value} idx={idx} />)}
+  {props.radioValues.map((value, index) => <RadioOption key={`option-${value.value}-${index}`} {...props} {...value} index={index} />)}
 </fieldset>

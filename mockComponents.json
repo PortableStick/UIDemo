@@ -1,0 +1,126 @@
+{
+    "nodes":[
+        {
+            "id": "myFirstMockComponent",
+            "componentList": [
+                {
+                    "type": "BUTTON",
+                    "id": "mockButton",
+                    "buttonType": "submit",
+                    "text": "Click me!"
+                },
+                {
+                    "type": "DISCRETE_SLIDER",
+                    "id": "mockRangeSlider",
+                    "text": "Slide me!",
+                    "min": 0,
+                    "max": 10,
+                    "value": 5,
+                    "step": 0.5
+                },
+                {
+                    "type": "NUMBER_INPUT",
+                    "id": "mockNumberValue",
+                    "min": 0,
+                    "max": 23,
+                    "value": 12
+                },
+                {
+                    "type": "RADIO_INPUT",
+                    "id": "mockRadioInput",
+                    "selectedOption": "Doc",
+                    "radioValues": [
+                        {
+                            "value": "Larry",
+                            "checked": "false"
+                        },
+                        {
+                            "value": "Barry",
+                            "checked": "false"
+                        },
+                        {
+                            "value": "Jerry",
+                            "checked": "true"
+                        },
+                        {
+                            "value": "Doc",
+                            "checked": "false"
+                        }
+
+                    ]
+                },
+                {
+                    "type": "SELECT_INPUT",
+                    "id": "mockSelectInput",
+                    "selectOptions": ["dog", "cat", "rat", "dogcat", "rogdat", "flimflam"]
+                },
+                {
+                    "type": "TEXT_INPUT",
+                    "id": "mockTextInput",
+                    "textInputValue": "I am a value from the server!"
+                }
+            ]
+        },
+        {
+            "id": "mySecondMockComponent",
+            "componentList": [
+                {
+                    "type": "BUTTON",
+                    "id": "mockButton",
+                    "buttonType": "submit",
+                    "text": "Click me!"
+                },
+                {
+                    "type": "DISCRETE_SLIDER",
+                    "id": "mockRangeSlider",
+                    "text": "Slide me!",
+                    "min": 0,
+                    "max": 10,
+                    "value": 5,
+                    "step": 0.5
+                },
+                {
+                    "type": "NUMBER_INPUT",
+                    "id": "mockNumberValue",
+                    "min": 0,
+                    "max": 23,
+                    "value": 12
+                },
+                {
+                    "type": "RADIO_INPUT",
+                    "id": "mockRadioInput",
+                    "radioValues": [
+                        {
+                            "value": "Larry",
+                            "checked": "false"
+                        },
+                        {
+                            "value": "Barry",
+                            "checked": "false"
+                        },
+                        {
+                            "value": "Jerry",
+                            "checked": "true"
+                        },
+                        {
+                            "value": "Doc",
+                            "checked": "false"
+                        }
+
+                    ]
+                },
+                {
+                    "type": "SELECT_INPUT",
+                    "id": "mockSelectInput",
+                    "selectOptions": ["dog", "cat", "rat", "dogcat", "rogdat", "flimflam"]
+                },
+                {
+                    "type": "TEXT_INPUT",
+                    "id": "mockTextInput",
+                    "textInputValue": "I am a value from the server!"
+                }
+            ]
+        }
+    ],
+    "links":[{"source": "myFirstMockComponent", "target": "mySecondMockComponent"}]
+}
