@@ -6,5 +6,5 @@ export default props =>
   <label  htmlFor={`${props.id}-radioInput`}>
     Radio label:
   </label>
-  {props.radioValues.map((value, index) => <RadioOption key={`option-${value.value}-${index}`} {...props} {...value} index={index} />)}
+  {props.radioOptions.map((option, index) => <RadioOption key={`option-${option.label}-${index}`} {...props} {...option} index={index} />)}
 </fieldset>

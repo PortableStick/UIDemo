@@ -6,3 +6,4 @@ export const setWindowSize = size => ({ type: Actions.SET_WINDOW_SIZE, payload: 
 export const showTooltip = () => ({ type: Actions.SHOW_TOOLTIP })
 export const hideTooltip = () => ({ type: Actions.HIDE_TOOLTIP })
 export const setToolttipData = data => ({ type: Actions.SET_TOOLTIP_DATA, payload: data })
+export const updateComponent = (nodeIndex, updatedNode) => ({ type: Actions.UPDATE_COMPONENT, payload: { nodeIndex, updatedNode }})

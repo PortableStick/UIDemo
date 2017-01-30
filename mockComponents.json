@@ -1,7 +1,7 @@
 {
     "nodes":[
         {
-            "id": "myFirstMockComponent",
+            "id": "myFirstMockNode",
             "componentList": [
                 {
                     "type": "BUTTON",
@@ -28,23 +28,19 @@
                 {
                     "type": "RADIO_INPUT",
                     "id": "mockRadioInput",
-                    "selectedOption": "Doc",
-                    "radioValues": [
+                    "value": "Doc",
+                    "radioOptions": [
                         {
-                            "value": "Larry",
-                            "checked": "false"
+                            "label": "Larry"
                         },
                         {
-                            "value": "Barry",
-                            "checked": "false"
+                            "label": "Barry"
                         },
                         {
-                            "value": "Jerry",
-                            "checked": "true"
+                            "label": "Jerry"
                         },
                         {
-                            "value": "Doc",
-                            "checked": "false"
+                            "label": "Doc"
                         }
 
                     ]
@@ -57,12 +53,12 @@
                 {
                     "type": "TEXT_INPUT",
                     "id": "mockTextInput",
-                    "textInputValue": "I am a value from the server!"
+                    "value": "I am a value from the server!"
                 }
             ]
         },
         {
-            "id": "mySecondMockComponent",
+            "id": "mySecondMockNode",
             "componentList": [
                 {
                     "type": "BUTTON",
@@ -117,10 +113,10 @@
                 {
                     "type": "TEXT_INPUT",
                     "id": "mockTextInput",
-                    "textInputValue": "I am a value from the server!"
+                    "value": "I am a value from the server!"
                 }
             ]
         }
     ],
-    "links":[{"source": "myFirstMockComponent", "target": "mySecondMockComponent"}]
+    "links":[{"source": "myFirstMockNode", "target": "mySecondMockNode"}]
 }

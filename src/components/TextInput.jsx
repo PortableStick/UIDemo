@@ -7,7 +7,7 @@ export default props =>
   </label>
   <input type="text"
       onChange={props.onChange}
-      value={props.textInputValue}
+      value={props.value}
       id={`${props.id}-textInput`}
       />
 </fieldset>

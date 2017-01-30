@@ -9,7 +9,7 @@ export default props =>
         min={props.min}
         max={props.max}
         onChange={props.onChange}
-        value={props.numberInputValue}
+        value={props.value}
         id={`${props.id}-numberInput`}
         />
 </fieldset>
