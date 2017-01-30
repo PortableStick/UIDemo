@@ -85,22 +85,19 @@
                 {
                     "type": "RADIO_INPUT",
                     "id": "mockRadioInput",
-                    "radioValues": [
+                    "value": "Doc",
+                    "radioOptions": [
                         {
-                            "value": "Larry",
-                            "checked": "false"
+                            "label": "Larry"
                         },
                         {
-                            "value": "Barry",
-                            "checked": "false"
+                            "label": "Barry"
                         },
                         {
-                            "value": "Jerry",
-                            "checked": "true"
+                            "label": "Jerry"
                         },
                         {
-                            "value": "Doc",
-                            "checked": "false"
+                            "label": "Doc"
                         }
 
                     ]

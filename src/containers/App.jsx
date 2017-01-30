@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import * as Actions from '../actions/actions'
 import store from '../store/store'
 import Tooltip from '../components/Tooltip.jsx'
+import Navbar from '../components/Navbar.jsx'
 
 const myServer = 'ws://localhost:9000'
 const mattsServer = 'ws://localhost:8009'
@@ -29,6 +30,7 @@ class App extends Component {
   render() {
     return(
       <div>
+        <Navbar />
         {this.props.children}
         <Tooltip show={this.props.showTooltip} data={this.props.tooltipData} />
       </div>

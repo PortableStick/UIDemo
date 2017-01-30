@@ -13,7 +13,7 @@ function stateReducer(state, action) {
     case Actions.SET_TOOLTIP_DATA:
       return { ...state, tooltipData: action.payload }
     case Actions.UPDATE_COMPONENT:
-      const updatedNodeList = [...state.nodes.slice(0,action.payload.nodeIndex > 0 ? action.payload.nodeIndex - 1 : 0), action.payload.updatedNode, ...state.nodes.slice(action.payload.nodeIndex + 1)]
+      const updatedNodeList = [...state.nodes.slice(0,action.payload.nodeIndex > 0 ? action.payload.nodeIndex : 0), action.payload.updatedNode, ...state.nodes.slice(action.payload.nodeIndex + 1)]
       return { ...state, nodes: updatedNodeList}
     default:
       return state
