@@ -1,0 +1,13 @@
+.component-form {
+  margin-top: 40px;
+  padding: 0 25%;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset:not(.option) {
+  border-bottom: 1px solid #333;
+  margin-bottom: 3px;
+}

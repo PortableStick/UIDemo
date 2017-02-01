@@ -5,6 +5,7 @@ import * as Actions from '../actions/actions'
 import store from '../store/store'
 import Tooltip from '../components/Tooltip.jsx'
 import Navbar from '../components/Navbar.jsx'
+import '../scss/main.scss'
 
 const myServer = 'ws://localhost:9000'
 const mattsServer = 'ws://localhost:8009'
@@ -20,17 +21,22 @@ class App extends Component {
 
   componentDidMount() {
     window.onresize = this.resize
-    let ws = new WebSocket(myServer)
-    ws.onmessage = data => {
+    this.ws = new WebSocket(myServer)
+    this.ws.onmessage = data => {
+      console.log("New data received", data)
       const newState = JSON.parse(data.data)
       store.dispatch(Actions.receiveState(newState))
     }
   }
 
+  getNewData() {
+    this.ws.send('message')
+  }
+
   render() {
     return(
       <div>
-        <Navbar />
+        <Navbar getNewData={this.getNewData.bind(this)}/>
         {this.props.children}
         <Tooltip show={this.props.showTooltip} data={this.props.tooltipData} />
       </div>

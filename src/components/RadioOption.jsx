@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default props =>
-<fieldset key={`fieldfor-${props.index}-${props.label}`}>
+<fieldset key={`fieldfor-${props.index}-${props.label}`} className="option">
   <label  htmlFor={`${props.index}-${props.label}`} key={`labelfor-${props.index}-${props.label}`}>
     {props.label}
   </label>

@@ -1,7 +1,9 @@
 const port = process.env.PORT || 9000
 const http = require('http'),
       websocket = require('ws'),
-      fs = require('fs')
+      fs = require('fs'),
+      generateNewData = require('./dataRandomizer').generateNewData,
+      resetData = require('./dataRandomizer').resetData
 
 const server = http.createServer((request, response) => {
 
@@ -15,4 +17,16 @@ wsserver.on('connection', connection => {
       client.send(data)
     })
   })
+
+  connection.on('message', () => {
+    wsserver.clients.forEach(client => {
+      const nextData = generateNewData()
+      client.send(nextData)
+    })
+  })
+
+  connection.on('close', () => {
+    console.log("Closing connection")
+    resetData()
+  });
 })

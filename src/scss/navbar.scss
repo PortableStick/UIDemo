@@ -1,0 +1,28 @@
+nav.navbar {
+  margin: 0;
+  width: 100%;
+  height: 70px;
+  background-color: purple;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.navbar h1 {
+  margin: 0;
+}
+
+nav.navbar .title {
+  color: white;
+  font-family: sans-serif;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+nav.navbar .home-link {
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  margin-left: 20px;
+}

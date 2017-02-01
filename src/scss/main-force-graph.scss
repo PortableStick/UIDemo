@@ -11,3 +11,13 @@
 .hidden {
   opacity: 0;
 }
+
+.project {
+  padding: 10px;
+  background-color: steelblue;
+  display: block;
+  position: absolute;
+  color: white;
+  font-family: sans-serif;
+  cursor: pointer;
+}
