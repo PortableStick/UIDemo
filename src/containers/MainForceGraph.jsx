@@ -92,6 +92,7 @@ class MainForceGraph extends Component {
 
       this.simulation = this.simulation
         .force('center', forceCenter(width / 2, window.innerHeight / 2))
+        .force('links', forceLink().id(d => d.id).distance(400))
       this.simulation.nodes(nodes)
       this.simulation.force('links')
         .links(links)
