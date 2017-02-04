@@ -78,7 +78,6 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "ws": "^1.1.1",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -115,6 +114,7 @@
     "tape-catch": "^1.0.6",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "ws": "^1.1.1"
   }
 }
