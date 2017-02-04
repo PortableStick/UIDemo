@@ -9,6 +9,7 @@ import '../scss/main.scss'
 
 const myServer = 'ws://localhost:9000'
 const mattsServer = 'ws://localhost:8009'
+const gomix = 'ws://valiant-oatmeal.gomix.me/'
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends Component {
 
   componentDidMount() {
     window.onresize = this.resize
-    this.ws = new WebSocket(myServer)
+    this.ws = new WebSocket(gomix)
     this.ws.onmessage = data => {
       console.log("New data received", data)
       const newState = JSON.parse(data.data)
