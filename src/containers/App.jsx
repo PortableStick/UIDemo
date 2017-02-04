@@ -7,9 +7,7 @@ import Tooltip from '../components/Tooltip.jsx'
 import Navbar from '../components/Navbar.jsx'
 import '../scss/main.scss'
 
-const myServer = 'ws://localhost:9000'
-const mattsServer = 'ws://localhost:8009'
-const gomix = `wss://${window.location.host}`
+const gomix = `${window.location.protocol === 'https' ? 'wss' : 'ws'}://${window.location.host}`
 
 class App extends Component {
   constructor(props) {

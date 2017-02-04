@@ -9,7 +9,7 @@ var htmlPlugin = new htmlWebpackPlugin({
   inject: 'head',
   isProduction: isProduction,
   minify: minifyConfig,
-  hash: isProduction
+  hash: false
 })
 
 var minifyConfig = {
@@ -34,7 +34,7 @@ var externals = {
 
 var entryOptions = isProduction ? './src/index.js' : ['./src/index.js', 'webpack-dev-server/client?http://localhost:8080', 'webpack/hot/only-dev-server']
 
-var outputOptions = Object.assign({}, { path: path.join(__dirname, 'build'), filename: 'scripts/bundle.js' }, isProduction ? {} : { publicPath: 'http://localhost:8080/' })
+var outputOptions = Object.assign({}, { path: path.join(__dirname, 'build'), filename: 'scripts/bundle.[chunkhash].js' }, isProduction ? {} : { publicPath: 'http://localhost:8080/' })
 
 module.exports = {
   entry: entryOptions,
