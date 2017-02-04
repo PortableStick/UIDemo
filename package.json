@@ -19,7 +19,8 @@
     "build": "NODE_ENV=production webpack -p",
     "webpack-server": "webpack-dev-server -d --inline --hot",
     "web-server": "http-server -p 3000 .",
-    "start": "npm run webpack-server & npm run web-server",
+    "start-dev": "npm run webpack-server & npm run web-server",
+    "start": "node server.js",
     "node-start": "nodemon server.js"
   },
   "keywords": [],
