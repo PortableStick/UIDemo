@@ -9,7 +9,7 @@ import '../scss/main.scss'
 
 const myServer = 'ws://localhost:9000'
 const mattsServer = 'ws://localhost:8009'
-const gomix = 'ws://valiant-oatmeal.gomix.me/'
+const gomix = `wss://${window.location.host}`
 
 class App extends Component {
   constructor(props) {
