@@ -21,7 +21,7 @@ class MainForceGraph extends Component {
       this.simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(200))
         .force('charge', forceManyBody().strength(-80))
         .force('collide', forceCollide().strength(0.7))
-        .force('center', forceCenter(props.width / 2, window.innerHeight / 2))
+        .force('center', forceCenter(props.width / 2, (window.innerHeight / 2) + 70))
         .stop()
     }
 
@@ -55,11 +55,16 @@ class MainForceGraph extends Component {
     }
 
     componentDidMount() {
-      let { nodes, links } = this.props
+      let { nodes, links, width } = this.props
       let self = select('#main-graph')
-      this.simulation.nodes(nodes)
-      this.simulation.force('links').links(links)
-      this.buildSimulation(this.simulation)
+      const simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(200))
+        .force('charge', forceManyBody().strength(-80))
+        .force('collide', forceCollide().strength(0.7))
+        .force('center', forceCenter(width / 2, (window.innerHeight / 2) + 70))
+        .stop()
+      simulation.nodes(nodes)
+      simulation.force('links').links(links)
+      this.buildSimulation(simulation)
       this.node = self.append('div')
         .classed('projects', true)
         .selectAll('.project')
@@ -93,15 +98,19 @@ class MainForceGraph extends Component {
 
     componentDidUpdate() {
       let { nodes, links, width } = this.props
-      this.simulation = this.simulation
-        .force('center', forceCenter(width / 2, window.innerHeight / 2))
-        .force('links', forceLink().id(d => d.id).distance(400))
-      this.simulation.nodes(nodes)
-      this.simulation.force('links')
+      const simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(200))
+        .force('charge', forceManyBody().strength(-80))
+        .force('collide', forceCollide().strength(0.7))
+        .force('center', forceCenter(width / 2, (window.innerHeight / 2) + 70))
+        .stop()
+      simulation.nodes(nodes)
+      simulation.force('links')
         .links(links)
-      this.buildSimulation(this.simulation)
+      this.buildSimulation(simulation)
 
       this.node = this.node.data(nodes)
+          .style('left', d => `${d.x}px`)
+          .style('top', d => `${d.y}px`)
       this.node.exit().remove()
       this.node = this.node.enter()
         .append('div')
@@ -118,6 +127,10 @@ class MainForceGraph extends Component {
         .merge(this.node)
 
       this.link = this.link.data(links)
+        .attr('x1', d => d.source.x)
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y)
       this.link.exit().remove()
       this.link = this.link.enter()
         .append('line')
