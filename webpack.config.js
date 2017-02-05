@@ -34,7 +34,7 @@ var externals = {
 
 var entryOptions = isProduction ? './src/index.js' : ['./src/index.js', 'webpack-dev-server/client?http://localhost:8080', 'webpack/hot/only-dev-server']
 
-var outputOptions = Object.assign({}, { path: path.join(__dirname, 'build'), filename: 'scripts/bundle.[chunkhash].js' }, isProduction ? {} : { publicPath: 'http://localhost:8080/' })
+var outputOptions = Object.assign({}, { path: path.join(__dirname, 'build'), filename: 'scripts/bundle.[hash].js' }, isProduction ? {} : { publicPath: 'http://localhost:8080/' })
 
 module.exports = {
   entry: entryOptions,

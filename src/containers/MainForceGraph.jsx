@@ -20,14 +20,18 @@ class MainForceGraph extends Component {
       super(props)
       this.simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(200))
         .force('charge', forceManyBody().strength(-80))
+        .force('collide', forceCollide().strength(0.7))
         .force('center', forceCenter(props.width / 2, window.innerHeight / 2))
+        .stop()
     }
 
-    buildSimulation() {
-      this.simulation.alpha(1)
-      for(let i = 0, n = Math.ceil(Math.log(this.simulation.alphaMin()) / Math.log(1 - this.simulation.alphaDecay())); i < n; ++i) {
-        this.simulation.tick()
+    buildSimulation(simulation) {
+      simulation.alpha(1)
+      simulation.restart()
+      for(let i = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); i < n; ++i) {
+        simulation.tick()
       }
+      simulation.stop()
     }
 
     goToComponent(data, index) {
@@ -45,8 +49,8 @@ class MainForceGraph extends Component {
     }
 
     generateNodeHTML(node) {
-      return `<h1>${node.id}</h1>
-            <p>${node.componentList.length} components</p>
+      return `<h1 class="node-title">${node.id}</h1>
+            <p class="node-length">${node.componentList.length} components</p>
       `
     }
 
@@ -55,7 +59,7 @@ class MainForceGraph extends Component {
       let self = select('#main-graph')
       this.simulation.nodes(nodes)
       this.simulation.force('links').links(links)
-      this.buildSimulation()
+      this.buildSimulation(this.simulation)
       this.node = self.append('div')
         .classed('projects', true)
         .selectAll('.project')
@@ -89,14 +93,13 @@ class MainForceGraph extends Component {
 
     componentDidUpdate() {
       let { nodes, links, width } = this.props
-
       this.simulation = this.simulation
         .force('center', forceCenter(width / 2, window.innerHeight / 2))
         .force('links', forceLink().id(d => d.id).distance(400))
       this.simulation.nodes(nodes)
       this.simulation.force('links')
         .links(links)
-      this.buildSimulation()
+      this.buildSimulation(this.simulation)
 
       this.node = this.node.data(nodes)
       this.node.exit().remove()
@@ -119,6 +122,7 @@ class MainForceGraph extends Component {
       this.link = this.link.enter()
         .append('line')
         .attr('stroke', 'black')
+        .attr('stroke-width', 4)
         .attr('x1', d => d.source.x)
         .attr('y1', d => d.source.y)
         .attr('x2', d => d.target.x)

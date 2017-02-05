@@ -7,7 +7,8 @@ import Tooltip from '../components/Tooltip.jsx'
 import Navbar from '../components/Navbar.jsx'
 import '../scss/main.scss'
 
-const gomix = `${window.location.protocol === 'https' ? 'wss' : 'ws'}://${window.location.host}`
+const server = `${window.location.protocol === 'https' ? 'wss' : 'ws'}://${window.location.host}`
+const devServer = `${window.location.protocol === 'https' ? 'wss' : 'ws'}://${window.location.host}:9000`
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class App extends Component {
 
   componentDidMount() {
     window.onresize = this.resize
-    this.ws = new WebSocket(gomix)
+    console.log(`Connecting to ${devServer}`)
+    this.ws = new WebSocket('ws://localhost:9000')
     this.ws.onmessage = data => {
       console.log("New data received", data)
       const newState = JSON.parse(data.data)
