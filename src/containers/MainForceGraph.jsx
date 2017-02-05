@@ -4,10 +4,7 @@ import { forceSimulation,
         forceCollide,
         forceManyBody,
         forceCenter,
-        forceY,
-        forceX,
-        select,
-        timeout } from 'd3'
+        select } from 'd3'
 import { browserHistory } from 'react-router'
 import { showTooltip, hideTooltip, setToolttipData } from '../actions/actions'
 import store from '../store/store'
