@@ -22,7 +22,7 @@ class App extends Component {
   componentDidMount() {
     window.onresize = this.resize
     console.log(`Connecting to ${devServer}`)
-    this.ws = new WebSocket('ws://localhost:9000')
+    this.ws = new WebSocket(server)
     this.ws.onmessage = data => {
       console.log("New data received", data)
       const newState = JSON.parse(data.data)
