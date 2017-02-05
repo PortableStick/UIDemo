@@ -9,7 +9,7 @@ import '../scss/main.scss'
 
 const server = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.hostname}`
 const devServer = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.hostname}:9000`
-console.log(window.location)
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     window.onresize = this.resize
-    this.ws = new WebSocket(devServer)
+    this.ws = new WebSocket(server)
     this.ws.onmessage = data => {
       console.log("New data received", data)
       const newState = JSON.parse(data.data)
