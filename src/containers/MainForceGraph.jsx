@@ -18,7 +18,7 @@ class MainForceGraph extends Component {
       this.simulation = forceSimulation().force('links', forceLink().id(d => d.id).distance(200))
         .force('charge', forceManyBody().strength(-80))
         .force('collide', forceCollide().strength(0.7))
-        .force('center', forceCenter(props.width / 2, (window.innerHeight / 2) + 70))
+        .force('center', forceCenter(props.width / 2, (window.innerHeight / 2) + 50))
         .stop()
     }
 
